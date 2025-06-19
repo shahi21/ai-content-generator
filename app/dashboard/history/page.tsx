@@ -20,11 +20,11 @@ export interface HISTORY {
 
 export default async function History() {
   const user = await currentUser();
-
+ {/* @ts-ignore */}
   const historyList: HISTORY[] = await db
     .select()
     .from(AIOutput)
-    .where(eq(AIOutput.createdBy, user?.primaryEmailAddress?.emailAddress))
+    .where(eq(AIOutput.createdBy, user!.primaryEmailAddress!.emailAddress))
     .orderBy(desc(AIOutput.id));
 
   const GetTemplateName = (slug: string) => {
